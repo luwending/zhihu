@@ -8,7 +8,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: '知乎',
+      title: '知乎-Lou',
       home: Index(),
     );
   }

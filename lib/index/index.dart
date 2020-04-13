@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:zhihu/home/home.dart';
-import 'package:zhihu/idea/idea.dart';
-import 'package:zhihu/market/market.dart';
-import 'package:zhihu/my/my.dart';
+
+import '../home/home.dart';
+import '../idea/idea.dart';
+import '../market/market.dart';
+import '../my/my.dart';
+import '../theme/theme.dart';
 
 class Index extends StatefulWidget{
 @override
@@ -74,6 +76,7 @@ class _IndexState extends State<Index> with TickerProviderStateMixin{
         ),
         bottomNavigationBar: bottomNavigationBar,
       ),
+      theme: ThemeManager.getInstance().theme.themeData(),
     );
   }
 
