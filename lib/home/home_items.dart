@@ -2,12 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:zhihu/models/Article.dart';
 
 class ProfileInfoView extends StatelessWidget {
-  ProfileInfoView({Key key, this.model}): super(key: key);
+  ProfileInfoView({Key key, this.model}) : super(key: key);
   Article model;
   @override
   Widget build(BuildContext context) {
     // TODO: implement build
-    return  Container(
+    return Container(
       child: Row(
         children: <Widget>[
           Container(
@@ -33,7 +33,7 @@ class ProfileInfoView extends StatelessWidget {
 
 // 底部（赞同 评论 更多）
 class BottomView extends StatelessWidget {
-  BottomView({Key key, this.model}): super(key: key);
+  BottomView({Key key, this.model}) : super(key: key);
   Article model;
   @override
   Widget build(BuildContext context) {
@@ -44,12 +44,12 @@ class BottomView extends StatelessWidget {
         children: <Widget>[
           FlatButton.icon(
             onPressed: null,
-            icon: Icon(Icons.change_history), 
+            icon: Icon(Icons.change_history),
             label: Text("赞同"),
           ),
           FlatButton.icon(
-            onPressed: null, 
-            icon: Icon(Icons.chat), 
+            onPressed: null,
+            icon: Icon(Icons.chat),
             label: Text("评论"),
           ),
         ],
@@ -60,7 +60,7 @@ class BottomView extends StatelessWidget {
 
 // 标题
 class TitleView extends StatelessWidget {
-  TitleView({Key key, this.model}): super(key: key);
+  TitleView({Key key, this.model}) : super(key: key);
   Article model;
   @override
   Widget build(BuildContext context) {
@@ -85,8 +85,9 @@ class TitleView extends StatelessWidget {
 
 /// 常规Item
 class HomeNormalItem extends StatelessWidget {
-  HomeNormalItem({Key key, this.model}) : super(key: key);
+  HomeNormalItem({Key key, this.model, this.onPressed}) : super(key: key);
   Article model;
+    final VoidCallback onPressed;
   @override
   Widget build(BuildContext context) {
     // 个人信息
@@ -104,9 +105,7 @@ class HomeNormalItem extends StatelessWidget {
       child: Row(
         children: <Widget>[
           Expanded(
-            child: Text(
-              model.mark
-            ),
+            child: Text(model.mark),
           ),
           SizedBox(
             height: 100,
@@ -121,8 +120,9 @@ class HomeNormalItem extends StatelessWidget {
       model: model,
     );
 
-    // TODO: implement build
-    return Container(
+    final itemView = GestureDetector(
+      onTap: onPressed,
+      child: Container(
       padding: EdgeInsets.all(10),
       child: Column(
         //个人信息
@@ -133,55 +133,60 @@ class HomeNormalItem extends StatelessWidget {
           bottomView,
         ],
       ),
+      ),
     );
+
+    // TODO: implement build
+    return itemView;
   }
 }
 
 ///文本Item
 class HomeTextItem extends StatelessWidget {
-  HomeTextItem({Key key, this.model}) : super(key: key);
+  HomeTextItem({Key key, this.model, this.onPressed}) : super(key: key);
   Article model;
+
+  final VoidCallback onPressed;
+
   @override
   Widget build(BuildContext context) {
-
     // 个人信息
-    final profileInfoView = ProfileInfoView(
-      model: model
-    );
+    final profileInfoView = ProfileInfoView(model: model);
     // 标题
-    final titleView = TitleView(
-      model: model
-    );
+    final titleView = TitleView(model: model);
     // 详情
     final detailView = Container(
       padding: EdgeInsets.fromLTRB(0, 10, 0, 10),
       child: Row(
         children: <Widget>[
           Expanded(
-            child: Text(
-              model.mark
-            ),
+            child: Text(model.mark),
           ),
         ],
       ),
     );
 
-     // 底部（赞同 评论 更多）
+    // 底部（赞同 评论 更多）
     final bottomView = BottomView(
       model: model,
     );
 
-    return Container(
-      padding: EdgeInsets.all(10),
-      child: Column(
-        children: <Widget>[
-          profileInfoView,
-          titleView,
-          detailView,
-          bottomView
-        ],
+    final itemView = GestureDetector(
+      onTap: onPressed,
+      child: Container(
+        padding: EdgeInsets.all(10),
+        child: Column(
+          children: <Widget>[
+            profileInfoView,
+            titleView,
+            detailView,
+            bottomView
+          ],
+        ),
       ),
     );
+
+    return itemView;
   }
 }
 
