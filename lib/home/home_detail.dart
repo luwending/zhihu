@@ -1,11 +1,8 @@
 import 'package:flutter/material.dart';
 
-
 class HomeDetail extends StatefulWidget {
-  
   @override
   _HomeDetailState createState() => _HomeDetailState();
-
 }
 
 class _HomeDetailState extends State<HomeDetail> {
@@ -17,7 +14,27 @@ class _HomeDetailState extends State<HomeDetail> {
         title: Text('详情'),
       ),
       body: Center(
-        child: Text('详情页'),
+        child: ConstrainedBox(
+          constraints: BoxConstraints.expand(),
+          child: Stack(
+            alignment: Alignment.center,
+            children: [
+              Container(
+                child:
+                    Text("Hello world", style: TextStyle(color: Colors.white)),
+                color: Colors.red,
+              ),
+              Positioned(
+                child: Text("I am Jack"),
+                left: 18.0,
+              ),
+              Positioned(
+                child: Text("Your friend"),
+                top: 18.0,
+              )
+            ],
+          ),
+        ),
       ),
     );
   }
